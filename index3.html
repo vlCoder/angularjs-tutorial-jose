@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- link do video tutorial https://www.youtube.com/watch?v=0Xlsh6ymAfY -->
+<!-- define o namespace da aplicação (ng-app="mvcApp") -->
+<html lang="pt-br" ng-app="Filtroapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device,initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="js/scriptsEp6.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <title>Tutorial de AngularJS - ep6 - Filtros</title>
+</head>
+
+<!-- Define um controller para este trecho da tela (ng-controller="ep03Controller")-->
+<body ng-controller="ep06Controller">
+
+    <div class="container theme-showcase"></div>
+    <h1>Estados e Capitais</h1>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="state in states">{{state.name | uppercase}} - {{state.capital | lowercase}} - {{state.pib | currency: 'R$'}}</li>
+    </ul>
+
+    <!-- Atribui método para submit -->
+    <form ng-submit="addState()">
+    <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-3">    
+            <input type="text" class="form-control" ng-model="estado" placeholder="Digite um estado">
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <input type="text" class="form-control" ng-model="capital" placeholder="Digite uma capital">
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <input type="text" class="form-control" ng-model="pib" placeholder="Digite o PIB">
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <input type="submit" class="btn btn-default" value="Incluir"/>
+        </div>
+    </div>    
+    </form>
+        <div class="col-md-3 col-sm-3 col-xs-3">
+        <p>
+            <!-- diretiva ng-model  -->
+            Gostei
+            <input type="checkbox" ng-model="gostei" /> 
+            <!-- diretiva ng-show -->
+            <span class="glyphicon glyphicon-thumbs-up" ng-show="gostei"></span>
+        </p>
+        <p>    
+            Enconder
+            <input type="checkbox" ng-model="escondido" />
+            <!-- diretiva ng-hide -->
+            <span class="glyphicon glyphicon-usd" ng-hide="escondido"></span>
+        </p>
+        <p>      
+            <!-- diretiva bg-click -->
+            <button ng-click="incrementa()">Diretiva ng-click</button>
+            <!-- <button ng-click="contador = contador + 1">Diretiva ng-click</button> -->
+
+            <!-- diretiva bg-bind -->
+            <!-- <p>Voce clicou <span ng-bind="contador"></span> vezes no botão acima</p> -->
+            <p>Voce clicou {{ contador }} vezes no botão acima</p>
+        </p>    
+        </div>        
+    </div>        
+    
+</body>
+</html>
