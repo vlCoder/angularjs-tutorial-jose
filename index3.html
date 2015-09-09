@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- link do video tutorial https://www.youtube.com/watch?v=0Xlsh6ymAfY -->
+<!-- link do video tutorial https://www.youtube.com/watch?v=E66eDjrn50g -->
 <!-- define o namespace da aplicação (ng-app="mvcApp") -->
 <html lang="pt-br" ng-app="Filtroapp">
 <head>
@@ -18,8 +18,12 @@
 
     <div class="container theme-showcase"></div>
     <h1>Estados e Capitais</h1>
+
+    <p>Data: {{data | date: 'dd/MM/yyyy'}}</p>
+
+    <p>Filtro: <input type="text" ng-model="filtro"/></p>
     <ul class="list-group">
-        <li class="list-group-item" ng-repeat="state in states">{{state.name | uppercase}} - {{state.capital | lowercase}} - {{state.pib | currency: 'R$'}}</li>
+        <li class="list-group-item" ng-repeat="state in states | orderBy:'name' | filter: filtro">{{state.name | uppercase}} - {{state.capital | lowercase}} - {{state.pib | currency: 'R$'}}</li>
     </ul>
 
     <!-- Atribui método para submit -->
@@ -40,28 +44,35 @@
     </div>    
     </form>
         <div class="col-md-3 col-sm-3 col-xs-3">
-        <p>
-            <!-- diretiva ng-model  -->
-            Gostei
-            <input type="checkbox" ng-model="gostei" /> 
-            <!-- diretiva ng-show -->
-            <span class="glyphicon glyphicon-thumbs-up" ng-show="gostei"></span>
-        </p>
-        <p>    
-            Enconder
-            <input type="checkbox" ng-model="escondido" />
-            <!-- diretiva ng-hide -->
-            <span class="glyphicon glyphicon-usd" ng-hide="escondido"></span>
-        </p>
-        <p>      
-            <!-- diretiva bg-click -->
-            <button ng-click="incrementa()">Diretiva ng-click</button>
-            <!-- <button ng-click="contador = contador + 1">Diretiva ng-click</button> -->
+            <p>
+                <!-- diretiva ng-model  -->
+                Gostei
+                <input type="checkbox" ng-model="gostei" /> 
+                <!-- diretiva ng-show -->
+                <span class="glyphicon glyphicon-thumbs-up" ng-show="gostei"></span>
+            </p>
+            <p>    
+                Enconder
+                <input type="checkbox" ng-model="escondido" />
+                <!-- diretiva ng-hide -->
+                <span class="glyphicon glyphicon-usd" ng-hide="escondido"></span>
+            </p>
+            <p>      
+                <!-- diretiva bg-click -->
+                <button ng-click="incrementa()">Diretiva ng-click</button>
+                <!-- <button ng-click="contador = contador + 1">Diretiva ng-click</button> -->
 
-            <!-- diretiva bg-bind -->
-            <!-- <p>Voce clicou <span ng-bind="contador"></span> vezes no botão acima</p> -->
-            <p>Voce clicou {{ contador }} vezes no botão acima</p>
-        </p>    
+                <!-- diretiva bg-bind -->
+                <!-- <p>Voce clicou <span ng-bind="contador"></span> vezes no botão acima</p> -->
+                <p>Voce clicou {{ contador }} vezes no botão acima</p>
+            </p>
+
+            <!-- Filtro com LimitTo -->
+            <p>Letras: {{letras}}</p>
+            <p>Letras(limitanto em 2) :{{letras | limitTo:5}}</p>
+            <p>Letras(limitanto em 2 e uppercase): {{letras | limitTo : 2 | uppercase}}</p>
+            <!-- Filtro em Json -->
+            <p>Estados Array: {{states | json }}</p>    
         </div>        
     </div>        
     
